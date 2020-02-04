@@ -1,0 +1,42 @@
+package com.daasworld.hellokarate.controllers;
+
+import com.daasworld.hellokarate.entities.Person;
+import com.daasworld.hellokarate.services.Persons;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class PersonController {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+    private Persons persons;
+
+    @Autowired
+    public PersonController(Persons persons) {
+        this.persons = persons;
+    }
+
+    // $ curl localhost:8080/api/person/1
+    @GetMapping(value = "/api/person/{id}", produces = "application/json")
+    public ResponseEntity<Person> getById(@PathVariable int id){
+        Person p = persons.getById(id);
+        if(p == null ) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(p, HttpStatus.OK);
+        }
+    }
+
+    // $ curl -X POST localhost:8080/api/person -H 'Content-type:application/json' -d '{"firstName": "John", "lastName" : "Doe", "age" : 30}'
+    @PostMapping(value = "/api/person", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Integer> createPerson(@RequestBody Person p) {
+        int id =  persons.add(p);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+}
+
