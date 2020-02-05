@@ -31,18 +31,4 @@ public class Persons {
                 ", currentId=" + currentId +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Persons persons = (Persons) o;
-        return currentId == persons.currentId &&
-                Objects.equals(map, persons.map);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(map, currentId);
-    }
 }
