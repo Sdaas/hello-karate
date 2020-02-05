@@ -1,7 +1,7 @@
 Feature: Hello World
 
   Background:
-    Given url 'http://localhost:8080'
+    Given url baseUrl
     Given path '/api/hello'
 
   Scenario: Hello world
