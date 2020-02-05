@@ -37,7 +37,7 @@ public class PersonControllerSpringTests {
 
         // setup the mock ...
         Person p = new Person("John", "Doe", 30);
-        when(mockPersons.add( any(Person.class) )).thenReturn(0);
+        when(mockPersons.add( p )).thenReturn(0);
 
         // send the request ....
         String postUrl = "/api/person";
@@ -49,7 +49,7 @@ public class PersonControllerSpringTests {
         assertEquals("expected Id to be 0", 0L, (long)id);
 
         // Now verify the mock ...
-        verify(mockPersons).add( any(Person.class) ); // verify that the mock was called
+        verify(mockPersons).add( p ); // verify that the mock was called
     }
 
     @Test
