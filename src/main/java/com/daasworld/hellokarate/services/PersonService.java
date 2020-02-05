@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class Persons {
+public class PersonService {
 
     private HashMap<Integer,Person> map = new HashMap<>();
     private int currentId=0;
@@ -22,13 +22,5 @@ public class Persons {
     public int add(Person p) {
         map.put(currentId,p);
         return currentId++;
-    }
-
-    @Override
-    public String toString() {
-        return "Persons{" +
-                "map=" + map +
-                ", currentId=" + currentId +
-                '}';
     }
 }

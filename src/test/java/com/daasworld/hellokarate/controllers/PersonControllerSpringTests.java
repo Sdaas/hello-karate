@@ -1,11 +1,9 @@
 package com.daasworld.hellokarate.controllers;
 
 import com.daasworld.hellokarate.entities.Person;
-import com.daasworld.hellokarate.services.Persons;
-import org.junit.jupiter.api.extension.ExtendWith;
+import com.daasworld.hellokarate.services.PersonService;
 import org.junit.runner.RunWith;
 
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -16,8 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import org.mockito.*;
-import org.springframework.web.bind.annotation.RestController;
 
 import static org.mockito.Mockito.*;
 
@@ -30,14 +26,14 @@ public class PersonControllerSpringTests {
     private TestRestTemplate template;
 
     @MockBean
-    public Persons mockPersons;
+    public PersonService mockPersonService;
 
     @Test
     public void createPerson(){
 
         // setup the mock ...
         Person p = new Person("John", "Doe", 30);
-        when(mockPersons.add( p )).thenReturn(0);
+        when(mockPersonService.add( p )).thenReturn(0);
 
         // send the request ....
         String postUrl = "/api/person";
@@ -49,7 +45,7 @@ public class PersonControllerSpringTests {
         assertEquals("expected Id to be 0", 0L, (long)id);
 
         // Now verify the mock ...
-        verify(mockPersons).add( p ); // verify that the mock was called
+        verify(mockPersonService).add( p ); // verify that the mock was called
     }
 
     @Test
@@ -57,7 +53,7 @@ public class PersonControllerSpringTests {
 
         // setup the mock ...
         Person p = new Person("John", "Doe", 30);
-        when(mockPersons.getById(0)).thenReturn(p);
+        when(mockPersonService.getById(0)).thenReturn(p);
 
         // send the request ....
         String getUrl = "/api/person/0";
@@ -71,14 +67,14 @@ public class PersonControllerSpringTests {
         assertEquals("expected age 30", 30, p.getAge());
 
         // Now verify the mock ...
-        verify(mockPersons).getById(0); // verify that the mock was called
+        verify(mockPersonService).getById(0); // verify that the mock was called
     }
 
     @Test
     public void getNonExistentPerson(){
 
         // setup the mock ...
-        when(mockPersons.getById(12345)).thenReturn(null);
+        when(mockPersonService.getById(12345)).thenReturn(null);
 
         // send the request ....
         String getUrl = "/api/person/12345";
@@ -88,6 +84,6 @@ public class PersonControllerSpringTests {
         assertEquals(HttpStatus.NOT_FOUND, entity.getStatusCode());
 
         // Now verify the mock ...
-        verify(mockPersons).getById(12345); // verify that the mock was called
+        verify(mockPersonService).getById(12345); // verify that the mock was called
     }
 }
