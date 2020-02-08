@@ -37,15 +37,15 @@ $ curl localhost:8080/api/person/42
 
 The folder structure for Karate tests is given in the Karate documentation on
 [folder structure](https://github.com/intuit/karate#folder-structure), but the 
-summary is as follows
+summary is that:
 
-* All tests are defined in `*.feature` files which are kept in `src/test/resources` folder
+* All tests are defined in `*.feature` files
 * For every feature file package, you need to have an empty test-class in the same pacakge under `src/test/java`
+* Karate recommends to keep the `*.feature` files in the same folder as the test-class
+* The `<build>` section of your `pom.xml` needs a small tweak for this ..
 
-In this example, we have two features
-
-* `/src/test/resources/features/hello`, whose test class is in `src/test/java/features/hello`
-* `/src/test/resources/features/person`, whose test class is in `src/test/java/features/person`
+In this example, we have two features `hello` and `person`. Their `*.feature` files and test-classes
+are kept in `src/test/java/features/hello` and  `src/test/java/features/person` respectively
 
 Note that the test-class file do NOT use the `*Test.java` file naming convention used by JUnit4 classes. This actually ensures
 that these tests will not be picked up when when invoking mvn test (for the whole project) from the command line. 
@@ -81,7 +81,7 @@ to be able to run them from both the command-line and the IDE.
 * Karate tests : require the system under test to be running  
 
 
-## Running the Unit and Spring integration test
+#### Running the Unit and Spring integration test
 
 From the IntelliJ IDE, right click on `/test/java/com.daasworld.hellokarate` and "Run all tests"
 From the command line, run `mvn test`
@@ -90,7 +90,7 @@ Note that the `maven surefire plugin` is configured to treat all `.java` files i
 and to ignore all tests in the `feature` folder
 
 
-### Running the Karate Tests
+##### Running the Karate Tests
 
 Karate does NOT start up the system under test. So first start up the application by running
 ```
@@ -98,14 +98,14 @@ mvn spring-boot:run
 ```
 
 From the IntelliJ IDE right click on `/test/java/feature` and "Run all tests". You can also right click on the
-Java test-classes or the `*.feaure` files to run a subset of the tests
+Java test-classes or the `*.feature` files to run a subset of the tests
 
 From the command-line, run `mvn test -Dtest=HelloRunner`
 
 SCRATCHPAD
 
 * Work in progress - how to run all the Karate Tests from the command line
-* PersonRunner tests are still failing
+
 
 
 ### References
