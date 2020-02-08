@@ -70,6 +70,9 @@ The [`karate-config.js`](https://github.com/intuit/karate#karate-configjs) file 
 and global variables used by Karate. This is is basically a javascript function that returns
 a JSON object. Which means that the file cannot contain any comment statements before the function body. 
 
+We also add an empty test class file in `/test/java/karate/KarateTests` so that all karate tests can be
+executed from the command-line. 
+
 ### Logging Configuration
 
 Logging configuration is controlled by the `/test/java/logback.xml` file as explained in the Karate documentation
@@ -94,7 +97,6 @@ Note that the `maven surefire plugin` is configured to treat all `.java` files i
 and to ignore all tests in the `karate` folder
 
 
-
 ##### Running the Karate Tests
 
 Karate does NOT start up the system under test. So first start up the application by running
@@ -105,7 +107,7 @@ mvn spring-boot:run
 From the IntelliJ IDE right click on `/test/java/feature` and "Run all tests". You can also right click on the
 Java test-classes or the `*.feature` files to run a subset of the tests
 
-From the command-line, run `mvn test -Dtest=HelloRunner`
+From the command-line, run `mvn test -Dtest=KarateTests`. 
 
 SCRATCHPAD
 
