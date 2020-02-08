@@ -70,6 +70,44 @@ The [`karate-config.js`](https://github.com/intuit/karate#karate-configjs) file 
 and global variables used by Karate. This is is basically a javascript function that returns
 a JSON object. Which means that the file cannot contain any comment statements before the function body. 
 
+
+### Running the tests
+
+We have three types of tests - unit tests, Spring integration tests, and Karate tests. Ideally we want 
+to be able to run them from both the command-line and the IDE. 
+
+* Unit tests : are meant to run super fast
+* Spring integration tests : run slower because the entire application context has to be created
+* Karate tests : require the system under test to be running  
+
+
+## Running the Unit and Spring integration test
+
+From the IntelliJ IDE, right click on `/test/java/com.daasworld.hellokarate` and "Run all tests"
+From the command line, run `mvn test`
+
+Note that the `maven surefire plugin` is configured to treat all `.java` files in `com.daasworld` as Test classes
+and to ignore all tests in the `feature` folder
+
+
+### Running the Karate Tests
+
+Karate does NOT start up the system under test. So first start up the application by running
+```
+mvn spring-boot:run
+```
+
+From the IntelliJ IDE right click on `/test/java/feature` and "Run all tests". You can also right click on the
+Java test-classes or the `*.feaure` files to run a subset of the tests
+
+From the command-line, run `mvn test -Dtest=HelloRunner`
+
+SCRATCHPAD
+
+* Work in progress - how to run all the Karate Tests from the command line
+* PersonRunner tests are still failing
+
+
 ### References
 
 * [Karate](https://github.com/intuit/karate) github repo
