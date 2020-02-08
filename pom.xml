@@ -93,7 +93,7 @@
                 <version>2.22.1</version>
                 <configuration>
                     <excludes>
-                        <exclude>feature/**/*.java</exclude>
+                        <exclude>karate/**/*.java</exclude>
                     </excludes>
                     <includes>
                         <include>com/**/*.java</include>

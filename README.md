@@ -1,6 +1,6 @@
 ### Karate Starter
 
-This is a GSG for Karate. Two parts
+This Getting Started Guide demonstrates how to setup a SpringBoot based service and test it using Karate
 
 1. A SpringBoot based Rest service that acts as the system under test
 2. Karate DSL scripts to test this
@@ -45,7 +45,7 @@ summary is that:
 * The `<build>` section of your `pom.xml` needs a small tweak for this ..
 
 In this example, we have two features `hello` and `person`. Their `*.feature` files and test-classes
-are kept in `src/test/java/features/hello` and  `src/test/java/features/person` respectively
+are kept in `src/test/java/karate/hello` and  `src/test/java/karate/person` respectively
 
 Note that the test-class file do NOT use the `*Test.java` file naming convention used by JUnit4 classes. This actually ensures
 that these tests will not be picked up when when invoking mvn test (for the whole project) from the command line. 
@@ -66,10 +66,14 @@ key points are
     * `Then` : the expected outcome(s)
     
 
-The [`karate-config.js`](https://github.com/intuit/karate#karate-configjs) file (typically kept in the `src/test/resources` folder) contains the environment 
+The [`karate-config.js`](https://github.com/intuit/karate#karate-configjs) file in the `/test/java` folder contains the environment 
 and global variables used by Karate. This is is basically a javascript function that returns
 a JSON object. Which means that the file cannot contain any comment statements before the function body. 
 
+### Logging Configuration
+
+Logging configuration is controlled by the `/test/java/logback.xml` file as explained in the Karate documentation
+on [logging](https://github.com/intuit/karate#logging). 
 
 ### Running the tests
 
@@ -87,7 +91,8 @@ From the IntelliJ IDE, right click on `/test/java/com.daasworld.hellokarate` and
 From the command line, run `mvn test`
 
 Note that the `maven surefire plugin` is configured to treat all `.java` files in `com.daasworld` as Test classes
-and to ignore all tests in the `feature` folder
+and to ignore all tests in the `karate` folder
+
 
 
 ##### Running the Karate Tests
