@@ -1,3 +1,6 @@
+
+[![Build Status](https://api.travis-ci.com/Sdaas/hello-karate.svg?branch=master)](https://travis-ci.com/Sdaas/hello-karate)
+ 
 ### Karate Starter
 
 This Getting Started Guide demonstrates how to setup a SpringBoot based service and test it using Karate
