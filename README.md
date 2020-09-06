@@ -110,14 +110,17 @@ Karate does NOT start up the system under test. So first start up the applicatio
 $ mvn spring-boot:run
 ```
 
-From the IntelliJ IDE right click on `/test/java/feature` and "Run all tests". You can also right click on the
-Java test-classes or the `*.feature` files to run a subset of the tests
-
 From the command-line, run 
 
 ```
 $ mvn test -Dtest=KarateTests
 ``` 
+
+The Karate tests can also be invoked from within IntelliJ in multiple ways
+
+* Right-click on `test/java/karate/KarateTests` to run all the tests
+* Right-click on the individual runners (e.g., test/java/karate/person/PersonRunner) to run all the tests there
+* Right-click on a `*.feature` file to run all only that feature
 
 ### References
 
