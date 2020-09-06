@@ -52,6 +52,22 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.intuit.karate/karate-apache -->
+        <dependency>
+            <groupId>com.intuit.karate</groupId>
+            <artifactId>karate-apache</artifactId>
+            <version>${karate.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.intuit.karate/karate-junit5 -->
+        <dependency>
+            <groupId>com.intuit.karate</groupId>
+            <artifactId>karate-junit5</artifactId>
+            <version>${karate.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

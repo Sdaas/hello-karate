@@ -1,8 +1,11 @@
 package karate.person;
 
-import org.junit.runner.RunWith;
-import com.intuit.karate.junit4.Karate;
+import com.intuit.karate.junit5.Karate;
 
-@RunWith(Karate.class)
-public class PersonRunner {
+class PersonRunner {
+
+    @Karate.Test
+    Karate testAll() {
+        return Karate.run().relativeTo(getClass());
+    }
 }

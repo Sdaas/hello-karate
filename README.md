@@ -3,14 +3,15 @@
  
 ### Karate Starter
 
-This Getting Started Guide demonstrates how to setup a SpringBoot based service and test it using Karate
+This Getting Started Guide shows how to setup a SpringBoot based REST service and test it using Karate (0.9.6). 
+consists of 
 
-1. A SpringBoot based Rest service that acts as the system under test
+1. A SpringBoot based Rest service which acts as the system under test
 2. Karate DSL scripts to test this
 
 ### The Rest Service
 
-This is a standard springboot application that exposes two APIs
+This is a standard Spring  Boot application that exposes two APIs
 
 #### Hello API
 ```
