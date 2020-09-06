@@ -1,10 +1,8 @@
 package com.daasworld.hellokarate.services;
 
 import com.daasworld.hellokarate.entities.Person;
-import org.junit.*;
-
-
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 // Plain simple unit test ....
 public class PersonServiceTest {
@@ -13,20 +11,20 @@ public class PersonServiceTest {
 
     @Test
     public void noSuchPerson(){
-        assertNull("should have returned null", personService.getById(-100));
+        assertNull(personService.getById(-100), "should have returned null");
     }
 
     @Test
     public void addAPerson(){
         Person p = new Person();
-        assertEquals("should have returned id=0", 0, personService.add(p));
+        assertEquals(0, personService.add(p), "should have returned id=0");
     }
 
     @Test
     public void addTwoPersons(){
         Person p = new Person();
-        assertEquals("should have returned id=0", 0, personService.add(p));
-        assertEquals("should have returned id=1", 1, personService.add(p));
+        assertEquals(0, personService.add(p), "should have returned id=0");
+        assertEquals(1, personService.add(p), "should have returned id=1");
     }
 
     @Test
@@ -35,8 +33,8 @@ public class PersonServiceTest {
         personService.add( new Person("John", "Doe", 30));
         personService.add( new Person());
         Person p = personService.getById(1);
-        assertEquals("expected first name John", "John", p.getFirstName());
-        assertEquals("expected last name Doe", "Doe", p.getLastName());
-        assertEquals("expected age 30", 30, p.getAge());
+        assertEquals( "John", p.getFirstName(), "expected first name John");
+        assertEquals( "Doe", p.getLastName(), "expected last name Doe");
+        assertEquals(30, p.getAge(), "expected age 30");
     }
 }
