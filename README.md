@@ -120,8 +120,11 @@ $ mvn test -Dtest=KarateTests
 The Karate tests can also be invoked from within IntelliJ in multiple ways
 
 * Right-click on `test/java/karate/KarateTests` to run all the tests
-* Right-click on the individual runners (e.g., test/java/karate/person/PersonRunner) to run all the tests there
+* Right-click on the individual runners (e.g., `test/java/karate/person/PersonRunner`) to run all the tests there
 * Right-click on a `*.feature` file to run all only that feature
+
+Note: Right-clicking to run a `.feature` file will not work if the file path contains spaces (e.g, `~/Idea Projects/....`)
+This is known bug in Karate. See [1283](https://github.com/intuit/karate/issues/1283)
 
 ### References
 
