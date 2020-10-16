@@ -103,19 +103,31 @@ $ mvn test
 Note that the `maven surefire plugin` is configured to treat all `.java` files in `com.daasworld` as Test classes
 and to ignore all tests in the `karate` folder.
 
-
 #### Running the Karate Tests
+##### From Command Line
 
 Karate does NOT start up the system under test. So first start up the application by running
 ```
 $ mvn spring-boot:run
 ```
-
-From the command-line, run 
-
+To run all the tests ( they are all under `karate`), run 
 ```
 $ mvn test -Dtest=KarateTests
 ``` 
+To run only the tests under the `karate/hello`, run
+```
+$ mvn test -Dtest=HelloRunner
+```
+To run only a single feature, specify it in the `karate.options` as shown below
+```
+$ mvn test "-Dkarate.options=classpath:karate/hello/hello1.feature" -Dtest=HelloRunner
+```
+To run only a single scenario, specify its line number as shown below
+```
+$ mvn test "-Dkarate.options=classpath:karate/hello/hello1.feature:13" -Dtest=HelloRunner
+```
+
+##### From IntelliJ
 
 The Karate tests can also be invoked from within IntelliJ in multiple ways
 

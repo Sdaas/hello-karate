@@ -23,6 +23,7 @@ public class PersonController {
     // $ curl localhost:8080/api/person/1
     @GetMapping(value = "/api/person/{id}", produces = "application/json")
     public ResponseEntity<Person> getById(@PathVariable int id){
+        logger.info("getById() called");
         Person p = personService.getById(id);
         if(p == null ) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -35,6 +36,7 @@ public class PersonController {
     // $ curl -X POST localhost:8080/api/person -H 'Content-type:application/json' -d '{"firstName": "John", "lastName" : "Doe", "age" : 30}'
     @PostMapping(value = "/api/person", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Integer> createPerson(@RequestBody Person p) {
+        logger.info("createPerson() called");
         int id =  personService.add(p);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
