@@ -3,11 +3,8 @@
  
 ### Karate Starter
 
-This Getting Started Guide shows how to setup a SpringBoot based REST service and test it using Karate (0.9.6). 
-consists of 
-
-1. A SpringBoot based Rest service which acts as the system under test
-2. Karate DSL scripts to test this
+This Getting Started Guide shows how to setup a SpringBoot based REST service and test it using Karate (0.9.6) from 
+within `IntelliJ`, `maven`, and `gradle`.
 
 ### The Rest Service
 
@@ -47,6 +44,7 @@ summary is that:
 * For every feature file package, you need to have an empty test-class in the same package under `src/test/java`
 * Karate recommends to keep the `*.feature` files in the same folder as the test-class
 * The `<build>` section of the `pom.xml` needs a small tweak for this ..
+* (Similar change needed in build.gradle file)
 
 In this example, we have two features `hello` and `person`. Their `*.feature` files and test-classes
 are kept in `src/test/java/karate/hello` and  `src/test/java/karate/person` respectively
@@ -82,6 +80,7 @@ executed from the command-line.
 Logging configuration is controlled by the `/test/java/logback.xml` file as explained in the Karate documentation
 on [logging](https://github.com/intuit/karate#logging). 
 
+
 ### Running the tests
 
 We have three types of tests - unit tests, Spring integration tests, and Karate tests. Ideally we want 
@@ -91,20 +90,59 @@ to be able to run them from both the command-line and the IDE.
 * Spring integration tests : run slower because the entire application context has to be created
 * Karate tests : require the system under test to be running  
 
-
 #### Running the Unit and Spring integration test
+##### From IntelliJ
 
-From the IntelliJ IDE, right click on `/test/java/com.daasworld.hellokarate` and "Run all tests"
-From the command line, run 
-```
-$ mvn test
-```
+Right click on `/test/java/com.daasworld.hellokarate` and "Run all tests"
 
-Note that the `maven surefire plugin` is configured to treat all `.java` files in `com.daasworld` as Test classes
-and to ignore all tests in the `karate` folder.
+##### From command-line using Maven
+
+Make sure that all the `.java` files in `com.daasworld` are configured to be treated as test classes. And 
+to ignore all the tests in the `karate` folder.
+
+```
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>2.22.1</version>
+    <configuration>
+        <excludes>
+            <exclude>karate/**/*.java</exclude>
+        </excludes>
+        <includes>
+            <include>com/**/*.java</include>
+        </includes>
+    </configuration>
+</plugin>
+```
+To run the tests
+```
+mvn test
+```
+##### From command-line using Gradle
+```
+./gradlew test --tests com.daasworld.hellokarate.*
+```
 
 #### Running the Karate Tests
-##### From Command Line
+##### From IntelliJ
+
+The Karate tests can also be invoked from within IntelliJ in multiple ways
+
+* Right-click on `test/java/karate/KarateTests` to run all the tests
+* Right-click on the individual runners (e.g., `test/java/karate/person/PersonRunner`) to run all the tests there
+* Right-click on a `*.feature` file to run only that feature
+* To run a single scenario, open the feature file, and right click on the specific scenario
+
+The test results can be viewed in the browser at  `file:///<projectroot>/target/surefire-reports/karate-summary.html`
+
+Note: 
+
+* Right-clicking to run a `.feature` file will not work if the file path contains spaces (e.g, `~/Idea Projects/....`)
+This is known bug in Karate. See [1283](https://github.com/intuit/karate/issues/1283)
+
+
+##### From command-line using Maven
 
 Karate does NOT start up the system under test. So first start up the application by running
 ```
@@ -127,18 +165,40 @@ To run only a single scenario, specify its line number as shown below
 $ mvn test "-Dkarate.options=classpath:karate/hello/hello1.feature:13" -Dtest=HelloRunner
 ```
 
-##### From IntelliJ
+The test results can be viewed in the browser at  `file:///<projectroot>/target/surefire-reports/karate-summary.html`
 
-The Karate tests can also be invoked from within IntelliJ in multiple ways
+##### From command-line using Gradle
 
-* Right-click on `test/java/karate/KarateTests` to run all the tests
-* Right-click on the individual runners (e.g., `test/java/karate/person/PersonRunner`) to run all the tests there
-* Right-click on a `*.feature` file to run all only that feature
+Start up the application
+```
+$ ./gradlew clean bootRun
+```
 
-Note: Right-clicking to run a `.feature` file will not work if the file path contains spaces (e.g, `~/Idea Projects/....`)
-This is known bug in Karate. See [1283](https://github.com/intuit/karate/issues/1283)
+All the Karate tests are in the `karate.test` folder. To run these tests
+```
+$ ./gradlew test --tests KarateTests
+```
+To run only those tests in the `karate.hello` package 
+```
+$ ./gradlew test --tests HelloRunner
+```
+To run only the tests in `demo1.feature`
+```
+$ ./gradlew test --tests HelloRunner -Dkarate.options=classpath:karate/hello/hello1.feature
+```
+To run only one scenario, you need to specify the line number, as shown below
+```
+$ ./gradlew test --tests HelloRunner -Dkarate.options=classpath:karate/hello/hello1.feature:7
+```
+
+The test results can be viewed in the browser at  `file:///<projectroot>/build/surefire-reports/karate-summary.html`
+
+Note : The test report from the IDE and the command-line are generated in DIFFERENT places. Reports for test run from the IDE are stored
+in the `target` folder. Report for tests run from the command-line are stored in the `build` folder. 
 
 ### References
 
 * [Karate](https://github.com/intuit/karate) github repo
 * [Spring Boot](https://spring.io/projects/spring-boot)
+
+

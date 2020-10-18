@@ -1,0 +1,44 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.daasworld.hellokarate'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+
+	testImplementation('org.junit.jupiter:junit-jupiter-api:5.4.2')
+    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.2')
+
+    testImplementation 'com.intuit.karate:karate-junit5:0.9.6'
+    testImplementation 'com.intuit.karate:karate-apache:0.9.6'
+}
+
+test {
+	useJUnitPlatform()
+    systemProperty "karate.options", System.properties.getProperty("karate.options")
+    systemProperty "karate.env", System.properties.getProperty("karate.env")
+    outputs.upToDateWhen { false }
+    testLogging.showStandardStreams = true
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDir file('src/test/java')
+            exclude '**/*.java'
+        }
+
+    }
+}
