@@ -80,6 +80,14 @@ executed from the command-line.
 Logging configuration is controlled by the `/test/java/logback.xml` file as explained in the Karate documentation
 on [logging](https://github.com/intuit/karate#logging). 
 
+# Setting up your Laptop
+
+On Macs, you need to have an entry in your `/etc/hosts` file that contains an entry with your machine name. For example ...
+```
+127.0.0.1	localhost -MY-MACHINE-NAME-
+```
+
+This happens due to the way netty works in Karate. This issue is supposed to be fixed in Karate 1.0
 
 ### Running the tests
 
