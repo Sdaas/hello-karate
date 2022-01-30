@@ -11,7 +11,7 @@ Feature: Create and Read persons ...
     And header Accept = 'application/json'
     When method post
     Then status 200
-    And match response == '0'
+    And assert response >= 0
 
   Scenario: Get person we just created
 
