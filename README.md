@@ -3,7 +3,7 @@
  
 ### Karate Starter
 
-This Getting Started Guide shows how to setup a SpringBoot based REST service and test it using Karate (0.9.6) from 
+This Getting Started Guide shows how to setup a SpringBoot based REST service and test it using Karate (1.1.0) from 
 within `IntelliJ`, `maven`, and `gradle`.
 
 ### The Rest Service

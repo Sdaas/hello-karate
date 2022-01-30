@@ -21,8 +21,8 @@ dependencies {
 	testImplementation('org.junit.jupiter:junit-jupiter-api:5.4.2')
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.2')
 
-    testImplementation 'com.intuit.karate:karate-junit5:0.9.6'
-    testImplementation 'com.intuit.karate:karate-apache:0.9.6'
+    testCompile 'com.intuit.karate:karate-core:1.1.0'
+    testCompile 'com.intuit.karate:karate-junit5:1.1.0'
 }
 
 test {
