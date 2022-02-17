@@ -3,7 +3,7 @@
  
 ### Karate Starter
 
-This Getting Started Guide shows how to setup a SpringBoot based REST service and test it using Karate (0.9.6) from 
+This Getting Started Guide shows how to setup a SpringBoot based REST service and test it using Karate (1.1.0) from 
 within `IntelliJ`, `maven`, and `gradle`.
 
 ### The Rest Service
@@ -42,7 +42,7 @@ summary is that:
 
 * All tests are defined in `*.feature` files
 * For every feature file package, you need to have an empty test-class in the same package under `src/test/java`
-* Karate recommends to keep the `*.feature` files in the same folder as the test-class
+* Karate recommends keeping the `*.feature` files in the same folder as the test-class
 * The `<build>` section of the `pom.xml` needs a small tweak for this ..
 * (Similar change needed in build.gradle file)
 
@@ -100,7 +100,7 @@ to be able to run them from both the command-line and the IDE.
 
 #### Running the Unit and Spring integration test
 ##### From IntelliJ
-
+mv
 Right click on `/test/java/com.daasworld.hellokarate` and "Run all tests"
 
 ##### From command-line using Maven
@@ -133,6 +133,20 @@ mvn test
 ```
 
 #### Running the Karate Tests
+
+Karate does NOT start up the system under test. So you need to first start up the application itself using
+any of of the three ways given below
+
+* IntelliJ -> Run -> HelloKarateApplication
+* `mvn spring-boot:run`
+* `./gradlew clean bootRun`
+
+Also note that the test report from IDE, mvn, and gradle are stored DIFFERENT places.
+
+* IntelliJ `file:///<projectroot>/target/karate-reports/karate-summary.html`
+* Maven `file:///<projectroot>/target/karate-reports/karate-summary.html`
+* Gradle `file:///<projectroot>/build/karate-reports/karate-summary.html`
+
 ##### From IntelliJ
 
 The Karate tests can also be invoked from within IntelliJ in multiple ways
@@ -140,22 +154,16 @@ The Karate tests can also be invoked from within IntelliJ in multiple ways
 * Right-click on `test/java/karate/KarateTests` to run all the tests
 * Right-click on the individual runners (e.g., `test/java/karate/person/PersonRunner`) to run all the tests there
 * Right-click on a `*.feature` file to run only that feature
-* To run a single scenario, open the feature file, and right click on the specific scenario
+* To run a single scenario, open the feature file, and right-click on the specific scenario
 
-The test results can be viewed in the browser at  `file:///<projectroot>/target/surefire-reports/karate-summary.html`
+The test results can be viewed in the browser at  `file:///<projectroot>/target/karate-reports/karate-summary.html`
 
 Note: 
 
-* Right-clicking to run a `.feature` file will not work if the file path contains spaces (e.g, `~/Idea Projects/....`)
-This is known bug in Karate. See [1283](https://github.com/intuit/karate/issues/1283)
+* Prior to 1.0, right-clicking to run a `.feature` file will not work if the file path contains spaces (e.g, `~/Idea Projects/....`)
+This bug [1283](https://github.com/intuit/karate/issues/1283) has been fixed in Karate 1.0
 
-
-##### From command-line using Maven
-
-Karate does NOT start up the system under test. So first start up the application by running
-```
-$ mvn spring-boot:run
-```
+##### From command-line using Maven 
 To run all the tests ( they are all under `karate`), run 
 ```
 $ mvn test -Dtest=KarateTests
@@ -173,14 +181,9 @@ To run only a single scenario, specify its line number as shown below
 $ mvn test "-Dkarate.options=classpath:karate/hello/hello1.feature:13" -Dtest=HelloRunner
 ```
 
-The test results can be viewed in the browser at  `file:///<projectroot>/target/surefire-reports/karate-summary.html`
+The test results can be viewed in the browser at  `file:///<projectroot>/target/karate-reports/karate-summary.html`
 
 ##### From command-line using Gradle
-
-Start up the application
-```
-$ ./gradlew clean bootRun
-```
 
 All the Karate tests are in the `karate.test` folder. To run these tests
 ```
@@ -199,14 +202,13 @@ To run only one scenario, you need to specify the line number, as shown below
 $ ./gradlew test --tests HelloRunner -Dkarate.options=classpath:karate/hello/hello1.feature:7
 ```
 
-The test results can be viewed in the browser at  `file:///<projectroot>/build/surefire-reports/karate-summary.html`
+The test results can be viewed in the browser at  `file:///<projectroot>/build/karate-reports/karate-summary.html`
 
-Note : The test report from the IDE and the command-line are generated in DIFFERENT places. Reports for test run from the IDE are stored
-in the `target` folder. Report for tests run from the command-line are stored in the `build` folder. 
 
 ### References
 
-* [Karate](https://github.com/intuit/karate) github repo
+* [Karate DSL ](https://github.com/intuit/karate)
+* [Karate 1.0 Upgrade Guide](https://github.com/karatelabs/karate/wiki/1.0-upgrade-guide)
 * [Spring Boot](https://spring.io/projects/spring-boot)
 
 
