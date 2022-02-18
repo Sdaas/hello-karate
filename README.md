@@ -1,6 +1,9 @@
+<div>
+  <a href="https://github.com/sdaas/hello-karate/actions?query=workflow%3Amaven-build">
+    <img src="https://github.com/sdaas/hello-karate/workflows/maven-build/badge.svg"/>
+  </a>
+</div>
 
-[![Build Status](https://api.travis-ci.com/Sdaas/hello-karate.svg?branch=master)](https://travis-ci.com/Sdaas/hello-karate)
- 
 ### Karate Starter
 
 This Getting Started Guide shows how to setup a SpringBoot based REST service and test it using Karate (1.1.0) from 
@@ -210,5 +213,6 @@ The test results can be viewed in the browser at  `file:///<projectroot>/build/k
 * [Karate DSL ](https://github.com/intuit/karate)
 * [Karate 1.0 Upgrade Guide](https://github.com/karatelabs/karate/wiki/1.0-upgrade-guide)
 * [Spring Boot](https://spring.io/projects/spring-boot)
+* [Quickstart for Github Actions](https://docs.github.com/en/actions/quickstart?utm_source=pocket_mylist)
 
 
