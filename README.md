@@ -1,8 +1,4 @@
-<div>
-  <a href="https://github.com/sdaas/hello-karate/actions?query=workflow%3Amaven-build">
-    <img src="https://github.com/sdaas/hello-karate/workflows/maven-build/badge.svg"/>
-  </a>
-</div>
+[![Java CI with Maven](https://github.com/Sdaas/hello-karate/actions/workflows/maven.yml/badge.svg)](https://github.com/Sdaas/hello-karate/actions/workflows/maven.yml)
 
 ### Karate Starter
 
