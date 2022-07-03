@@ -43,14 +43,8 @@ summary is that:
 * For every feature file package, you need to have an empty test-class in the same package under `src/test/java`
 * Karate recommends keeping the `*.feature` files in the same folder as the test-class
 * The `<build>` section of the `pom.xml` needs a small tweak for this ..
-* (Similar change needed in build.gradle file)
+* A similar change needed in `build.gradle` file.
 
-In this example, we have two features `hello` and `person`. Their `*.feature` files and test-classes
-are kept in `src/test/java/karate/hello` and  `src/test/java/karate/person` respectively
-
-Note that the test-class file do NOT use the `*Test.java` file naming convention used by JUnit4 classes. This actually ensures
-that these tests will not be picked up when when invoking mvn test (for the whole project) from the command line. 
-But they can still be invoked from the IDE.
 
 A `*.feature` file has the same syntax as [Gherkin/Cucumber](https://cucumber.io/docs/gherkin/reference/) 
 and is also described in Karate [documentation](https://github.com/intuit/karate#script-structure). The
@@ -71,8 +65,6 @@ The [`karate-config.js`](https://github.com/intuit/karate#karate-configjs) file 
 and global variables used by Karate. This is is basically a javascript function that returns
 a JSON object. Which means that the file cannot contain any comment statements before the function body. 
 
-We also add an empty test class file in `/test/java/karate/KarateTests` so that all karate tests can be
-executed from the command-line. 
 
 ### Logging Configuration
 
@@ -90,119 +82,25 @@ This happens due to the way netty works in Karate. This issue is supposed to be 
 
 ### Running the tests
 
-We have three types of tests - unit tests, Spring integration tests, and Karate tests. Ideally we want 
-to be able to run them from both the command-line and the IDE. 
+There is no need to start the application when running the tests - that will happen automatically.
 
-* Unit tests : are meant to run super fast
-* Spring integration tests : run slower because the entire application context has to be created
-* Karate tests : require the system under test to be running  
+* From within IntelliJ ...
+  * Right click on `src/test/java` and select "Run All Tests"
+  * The test results can be viewed in the browser at  `file:///<projectroot>/target/karate-reports/karate-summary.html`
+* From command line using Maven ...
+  * Make sure that `JAVA_HOME` environment variable is pointing to Java 11
+  * `mvn clean test`
+* From command line using Gradle ...
+  * `./gradlew clean test`
 
-#### Running the Unit and Spring integration test
-##### From IntelliJ
-mv
-Right click on `/test/java/com.daasworld.hellokarate` and "Run all tests"
-
-##### From command-line using Maven
-
-Make sure that all the `.java` files in `com.daasworld` are configured to be treated as test classes. And 
-to ignore all the tests in the `karate` folder.
-
-```
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>2.22.1</version>
-    <configuration>
-        <excludes>
-            <exclude>karate/**/*.java</exclude>
-        </excludes>
-        <includes>
-            <include>com/**/*.java</include>
-        </includes>
-    </configuration>
-</plugin>
-```
-To run the tests
-```
-mvn test
-```
-##### From command-line using Gradle
-```
-./gradlew test --tests com.daasworld.hellokarate.*
-```
-
-#### Running the Karate Tests
+### Starting only the application 
 
 Karate does NOT start up the system under test. So you need to first start up the application itself using
-any of of the three ways given below
+any of the three ways given below
 
 * IntelliJ -> Run -> HelloKarateApplication
 * `mvn spring-boot:run`
 * `./gradlew clean bootRun`
-
-Also note that the test report from IDE, mvn, and gradle are stored DIFFERENT places.
-
-* IntelliJ `file:///<projectroot>/target/karate-reports/karate-summary.html`
-* Maven `file:///<projectroot>/target/karate-reports/karate-summary.html`
-* Gradle `file:///<projectroot>/build/karate-reports/karate-summary.html`
-
-##### From IntelliJ
-
-The Karate tests can also be invoked from within IntelliJ in multiple ways
-
-* Right-click on `test/java/karate/KarateTests` to run all the tests
-* Right-click on the individual runners (e.g., `test/java/karate/person/PersonRunner`) to run all the tests there
-* Right-click on a `*.feature` file to run only that feature
-* To run a single scenario, open the feature file, and right-click on the specific scenario
-
-The test results can be viewed in the browser at  `file:///<projectroot>/target/karate-reports/karate-summary.html`
-
-Note: 
-
-* Prior to 1.0, right-clicking to run a `.feature` file will not work if the file path contains spaces (e.g, `~/Idea Projects/....`)
-This bug [1283](https://github.com/intuit/karate/issues/1283) has been fixed in Karate 1.0
-
-##### From command-line using Maven 
-To run all the tests ( they are all under `karate`), run 
-```
-$ mvn test -Dtest=KarateTests
-``` 
-To run only the tests under the `karate/hello`, run
-```
-$ mvn test -Dtest=HelloRunner
-```
-To run only a single feature, specify it in the `karate.options` as shown below
-```
-$ mvn test "-Dkarate.options=classpath:karate/hello/hello1.feature" -Dtest=HelloRunner
-```
-To run only a single scenario, specify its line number as shown below
-```
-$ mvn test "-Dkarate.options=classpath:karate/hello/hello1.feature:13" -Dtest=HelloRunner
-```
-
-The test results can be viewed in the browser at  `file:///<projectroot>/target/karate-reports/karate-summary.html`
-
-##### From command-line using Gradle
-
-All the Karate tests are in the `karate.test` folder. To run these tests
-```
-$ ./gradlew test --tests KarateTests
-```
-To run only those tests in the `karate.hello` package 
-```
-$ ./gradlew test --tests HelloRunner
-```
-To run only the tests in `demo1.feature`
-```
-$ ./gradlew test --tests HelloRunner -Dkarate.options=classpath:karate/hello/hello1.feature
-```
-To run only one scenario, you need to specify the line number, as shown below
-```
-$ ./gradlew test --tests HelloRunner -Dkarate.options=classpath:karate/hello/hello1.feature:7
-```
-
-The test results can be viewed in the browser at  `file:///<projectroot>/build/karate-reports/karate-summary.html`
-
 
 ### References
 
@@ -210,5 +108,3 @@ The test results can be viewed in the browser at  `file:///<projectroot>/build/k
 * [Karate 1.0 Upgrade Guide](https://github.com/karatelabs/karate/wiki/1.0-upgrade-guide)
 * [Spring Boot](https://spring.io/projects/spring-boot)
 * [Quickstart for Github Actions](https://docs.github.com/en/actions/quickstart?utm_source=pocket_mylist)
-
-
