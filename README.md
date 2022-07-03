@@ -1,15 +1,15 @@
 [![Java CI with Maven](https://github.com/Sdaas/hello-karate/actions/workflows/maven.yml/badge.svg)](https://github.com/Sdaas/hello-karate/actions/workflows/maven.yml)
 
-### Karate Starter
+## Karate Starter
 
-This Getting Started Guide shows how to setup a SpringBoot based REST service and test it using Karate (1.1.0) from 
+This Getting Started Guide shows how to setup a SpringBoot based REST service and test it using Karate from 
 within `IntelliJ`, `maven`, and `gradle`.
 
-### The Rest Service
+## The Rest Service
 
 This is a standard Spring  Boot application that exposes two APIs
 
-#### Hello API
+### Hello API
 ```
 $ curl localhost:8080/api/hello
 Hello world!
@@ -19,8 +19,7 @@ The fancy version when a name is passed in as a parameter...
 $ curl localhost:8080/api/hello?name=Daas
 Hello Daas!
 ```
-
-#### Person API 
+### Person API 
 
 Create a person
 ```
@@ -33,7 +32,7 @@ $ curl localhost:8080/api/person/42
 {"firstName":"John","lastName":"Doe","age":30}
 ```
 
-### Setting Up Karate
+## Setting Up Karate
 
 The folder structure for Karate tests is given in the Karate documentation on
 [folder structure](https://github.com/intuit/karate#folder-structure), but the 
@@ -71,7 +70,7 @@ a JSON object. Which means that the file cannot contain any comment statements b
 Logging configuration is controlled by the `/test/java/logback.xml` file as explained in the Karate documentation
 on [logging](https://github.com/intuit/karate#logging). 
 
-# Setting up your Laptop
+## Setting up your Laptop
 
 On Macs, you need to have an entry in your `/etc/hosts` file that contains an entry with your machine name. For example ...
 ```
@@ -80,7 +79,11 @@ On Macs, you need to have an entry in your `/etc/hosts` file that contains an en
 
 This happens due to the way netty works in Karate. This issue is supposed to be fixed in Karate 1.0
 
-### Running the tests
+## Running the tests
+
+This repo contains a mix of unit tests (e.g., `PersonServiceTests.java`), springboot tests using TestRestTemplate
+(e.g, `GreetingControllerTests.java`) and Karate Tests (`*.feature` file). There is also `KarateTests.java` which 
+is a springboot tests that invokes all the karate tests.
 
 There is no need to start the application when running the tests - that will happen automatically.
 
@@ -93,7 +96,7 @@ There is no need to start the application when running the tests - that will hap
 * From command line using Gradle ...
   * `./gradlew clean test`
 
-### Starting only the application 
+## Starting only the application 
 
 Karate does NOT start up the system under test. So you need to first start up the application itself using
 any of the three ways given below
@@ -102,9 +105,20 @@ any of the three ways given below
 * `mvn spring-boot:run`
 * `./gradlew clean bootRun`
 
+
+## Developer Instructions
+
+This repo uses github actions to automatically build and test the app whenever code is pushed to
+master branch. See [maven.yml](.github/workflows/maven.yml)
+
+### Release process
+
+
+
 ### References
 
 * [Karate DSL ](https://github.com/intuit/karate)
 * [Karate 1.0 Upgrade Guide](https://github.com/karatelabs/karate/wiki/1.0-upgrade-guide)
 * [Spring Boot](https://spring.io/projects/spring-boot)
 * [Quickstart for Github Actions](https://docs.github.com/en/actions/quickstart?utm_source=pocket_mylist)
+* [Maven Release Plugin](https://maven.apache.org/maven-release/maven-release-plugin/index.html)

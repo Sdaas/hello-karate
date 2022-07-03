@@ -16,8 +16,17 @@
 
     <properties>
         <java.version>11</java.version>
+
         <junit-jupiter.version>5.4.0</junit-jupiter.version>
         <karate.version>1.2.0</karate.version>
+
+        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+
+        <!-- used for release management -->
+        <repo.owner>sdaas</repo.owner>
+        <repo.name>hello-karate</repo.name>
+
     </properties>
 
     <dependencies>
@@ -64,6 +73,13 @@
 
     </dependencies>
 
+    <scm>
+        <connection>scm:git:https://github.com/${repo.owner}/${repo.name}.git</connection>
+        <url>https://github.com/${repo.owner}/${repo.name}</url>
+        <developerConnection>scm:git:https://github.com/${repo.owner}/${repo.name}.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
     <build>
         <testResources>
             <testResource>
@@ -83,7 +99,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
             </plugin>
         </plugins>
     </build>
