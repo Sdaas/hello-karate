@@ -1,12 +1,12 @@
 plugins {
-	id 'org.springframework.boot' version '2.3.3.RELEASE'
+	id 'org.springframework.boot' version '2.6.9'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
 }
 
 group = 'com.daasworld.hellokarate'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
