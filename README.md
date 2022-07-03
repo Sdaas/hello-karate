@@ -113,7 +113,16 @@ master branch. See [maven.yml](.github/workflows/maven.yml)
 
 ### Release process
 
-
+* Make sure that all files are committed
+* `mvn test`
+* `mvn release:prepare -DdryRun=true`
+* `mvn release:clean`
+* `mvn release:prepare`
+* `mvn release:perform`
+* Assuming that we are releasing `A.B.C`
+  * At this point the pom.xml should have been updated to the `next-version-SNAPSHOT` version
+  * There should a github tag called `vA.B.C`
+* We still need to create a Release (and release notes) manually from this tag.
 
 ### References
 
