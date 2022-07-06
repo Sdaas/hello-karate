@@ -98,13 +98,9 @@ There is no need to start the application when running the tests - that will hap
 
 ## Starting only the application 
 
-Karate does NOT start up the system under test. So you need to first start up the application itself using
-any of the three ways given below
-
 * IntelliJ -> Run -> HelloKarateApplication
 * `mvn spring-boot:run`
 * `./gradlew clean bootRun`
-
 
 ## Developer Instructions
 
