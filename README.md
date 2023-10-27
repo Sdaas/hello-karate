@@ -111,17 +111,25 @@ master branch. See [maven.yml](.github/workflows/maven.yml)
 
 ### Release process
 
+See the process to [prepare](https://maven.apache.org/maven-release/maven-release-plugin/usage/prepare-release.html)
+and [perform](https://maven.apache.org/maven-release/maven-release-plugin/usage/perform-release.html) the
+release, but the steps are ...
+
 * Make sure that all files are committed
 * `mvn test`
 * `mvn release:prepare -DdryRun=true`
+  * You will be prompted for the release version to use
 * `mvn release:clean`
 * `mvn release:prepare`
 * `mvn release:perform`
 * Assuming that we are releasing `A.B.C`
   * At this point the pom.xml should have been updated to the `next-version-SNAPSHOT` version
-  * There should a github tag called `vA.B.C`
-* We still need to create a Release (and release notes) manually from this tag.
+  * Run `git tag`. There should a github tag called `vA.B.C` 
 
+* We still need to create a Release (and release notes) manually from this tag.
+  * Go to `https://github.com/Sdaas/hello-karate/tags`
+  * Select the latest tag and `Release` it
+  
 ### References
 
 * [Karate DSL ](https://github.com/karatelabs/karate)
