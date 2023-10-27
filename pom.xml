@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.9</version>
+        <version>3.1.5</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.daasworld.hellokarate</groupId>
@@ -16,11 +16,11 @@
     <properties>
         <java.version>11</java.version>
 
-        <junit-jupiter.version>5.4.0</junit-jupiter.version>
+        <junit-jupiter.version>5.9.3</junit-jupiter.version>
         <karate.version>1.4.1</karate.version>
 
-        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
-        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <maven-surefire-plugin.version>3.2.1</maven-surefire-plugin.version>
+        <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
 
         <!-- used for release management -->
         <repo.owner>sdaas</repo.owner>
