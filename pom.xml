@@ -17,7 +17,7 @@
         <java.version>11</java.version>
 
         <junit-jupiter.version>5.4.0</junit-jupiter.version>
-        <karate.version>1.2.0</karate.version>
+        <karate.version>1.4.1</karate.version>
 
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
@@ -80,6 +80,7 @@
     </scm>
 
     <build>
+        <!-- See https://github.com/karatelabs/karate#folder-structure for writeup on folder structure -->
         <testResources>
             <testResource>
                 <directory>src/test/java</directory>

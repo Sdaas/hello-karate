@@ -35,7 +35,7 @@ $ curl localhost:8080/api/person/42
 ## Setting Up Karate
 
 The folder structure for Karate tests is given in the Karate documentation on
-[folder structure](https://github.com/intuit/karate#folder-structure), but the 
+[folder structure](https://github.com/karatelabs/karate#folder-structure), but the 
 summary is that:
 
 * All tests are defined in `*.feature` files
@@ -46,7 +46,7 @@ summary is that:
 
 
 A `*.feature` file has the same syntax as [Gherkin/Cucumber](https://cucumber.io/docs/gherkin/reference/) 
-and is also described in Karate [documentation](https://github.com/intuit/karate#script-structure). The
+and is also described in Karate [documentation](https://github.com/karatelabs/karate#script-structure). The
 key points are 
 
 * Lines that start with `#` are comments
@@ -60,7 +60,7 @@ key points are
     * `Then` : the expected outcome(s)
     
 
-The [`karate-config.js`](https://github.com/intuit/karate#karate-configjs) file in the `/test/java` folder contains the environment 
+The [`karate-config.js`](https://github.com/karatelabs/karate#karate-configjs) file in the `/test/java` folder contains the environment 
 and global variables used by Karate. This is is basically a javascript function that returns
 a JSON object. Which means that the file cannot contain any comment statements before the function body. 
 
@@ -68,9 +68,10 @@ a JSON object. Which means that the file cannot contain any comment statements b
 ### Logging Configuration
 
 Logging configuration is controlled by the `/test/java/logback.xml` file as explained in the Karate documentation
-on [logging](https://github.com/intuit/karate#logging). 
+on [logging](https://github.com/karatelabs/karate#logging). 
 
 ## Setting up your Laptop
+
 
 On Macs, you need to have an entry in your `/etc/hosts` file that contains an entry with your machine name. For example ...
 ```
@@ -78,6 +79,7 @@ On Macs, you need to have an entry in your `/etc/hosts` file that contains an en
 ```
 
 This happens due to the way netty works in Karate. This issue is supposed to be fixed in Karate 1.0
+(TODO - check if this is still valid for Karate 1.4 )
 
 ## Running the tests
 
@@ -122,8 +124,9 @@ master branch. See [maven.yml](.github/workflows/maven.yml)
 
 ### References
 
-* [Karate DSL ](https://github.com/intuit/karate)
-* [Karate 1.0 Upgrade Guide](https://github.com/karatelabs/karate/wiki/1.0-upgrade-guide)
+* [Karate DSL ](https://github.com/karatelabs/karate)
+  * [Wiki](https://github.com/karatelabs/karate/wiki/)
+  * [Documentation](https://karatelabs.github.io/karate/)
 * [Spring Boot](https://spring.io/projects/spring-boot)
 * [Quickstart for Github Actions](https://docs.github.com/en/actions/quickstart?utm_source=pocket_mylist)
 * [Maven Release Plugin](https://maven.apache.org/maven-release/maven-release-plugin/index.html)
